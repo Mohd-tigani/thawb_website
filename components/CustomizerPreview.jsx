@@ -6,6 +6,8 @@ export default function CustomizerPreview({ config }) {
   const imageName = `${config.style}_${config.color}.png`;
   let currentImage = `/images/${imageName}`;
 
+  const isDark = config.color === 'black' || config.color === 'navy';
+
   // Fallbacks for the two Navy images that failed to generate due to limits
   if (imageName === 'kuwaiti_navy.png' || imageName === 'omani_navy.png') {
     currentImage = `/images/${config.style}_black.png`;
@@ -21,28 +23,18 @@ export default function CustomizerPreview({ config }) {
         />
       </div>
 
-      {/* Layered Overlays (Proof of Concept) */}
-      {config.color === 'white' ? (
-        <>
-          {config.buttons === 'zipper' && (
-            <img src="/images/overlay_zipper.png" className={`customizer-overlay overlay-chest`} alt="Zipper detail" />
-          )}
-          {config.buttons === 'exposed' && (
-            <img src="/images/overlay_buttons.png" className={`customizer-overlay overlay-chest`} alt="Button detail" />
-          )}
-          {config.cuffs === 'french cuffs' && (
-            <img src="/images/overlay_cuff_french.png" className={`customizer-overlay overlay-wrist`} alt="French Cuff detail" />
-          )}
-          {config.cuffs === 'shirt cuffs' && (
-            <img src="/images/overlay_cuff_buttoned.png" className={`customizer-overlay overlay-wrist`} alt="Buttoned Cuff detail" />
-          )}
-        </>
-      ) : (
-        <div className="position-absolute top-50 start-50 translate-middle text-center" style={{ zIndex: 10, width: '80%', opacity: 0.6 }}>
-          <span className="badge bg-dark bg-opacity-75 p-2 rounded-pill fw-normal" style={{ fontSize: '0.7rem' }}>
-            Multi-layer demographic details (cuffs/buttons) disabled for dark colors in this demo.
-          </span>
-        </div>
+      {/* Layered Overlays */}
+      {config.buttons === 'zipper' && (
+        <img src="/images/overlay_zipper.png" className={`customizer-overlay overlay-chest ${isDark ? 'overlay-invert' : ''}`} alt="Zipper detail" />
+      )}
+      {config.buttons === 'exposed' && (
+        <img src="/images/overlay_buttons.png" className={`customizer-overlay overlay-chest ${isDark ? 'overlay-invert' : ''}`} alt="Button detail" />
+      )}
+      {config.cuffs === 'french cuffs' && (
+        <img src="/images/overlay_cuff_french.png" className={`customizer-overlay overlay-wrist ${isDark ? 'overlay-invert' : ''}`} alt="French Cuff detail" />
+      )}
+      {config.cuffs === 'shirt cuffs' && (
+        <img src="/images/overlay_cuff_buttoned.png" className={`customizer-overlay overlay-wrist ${isDark ? 'overlay-invert' : ''}`} alt="Buttoned Cuff detail" />
       )}
 
       {/* Visual Indicator of active config */}

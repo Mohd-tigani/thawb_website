@@ -676,6 +676,12 @@ input.form-control::placeholder {
   max-width: 120px;
 }
 
+/* Invert overlays for dark base colors so details remain visible */
+.overlay-invert {
+  filter: invert(1);
+  mix-blend-mode: screen;
+}
+
 /* ---------- Phone (< 576px) ---------- */
 @media (max-width: 575.98px) {
 
