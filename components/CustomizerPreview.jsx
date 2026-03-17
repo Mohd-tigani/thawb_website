@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+import ImageZoom from './ImageZoom';
 
 export default function CustomizerPreview({ config }) {
   // Dynamically map the style and color to the generated filenames
@@ -8,19 +8,16 @@ export default function CustomizerPreview({ config }) {
 
   // Fallbacks for the two Navy images that failed to generate due to limits
   if (imageName === 'kuwaiti_navy.png' || imageName === 'omani_navy.png') {
-    currentImage = `/images/kuwaiti_black.png`;
+    currentImage = `/images/${config.style}_black.png`;
   }
-  
+
   return (
     <div className="position-relative w-100 bg-light customizer-preview-wrapper" style={{ height: '70vh', minHeight: '500px' }}>
       <div className="position-absolute inset-0 w-100 h-100" style={{ inset: 0 }}>
-        <Image 
+        <ImageZoom
           src={currentImage}
           alt={`Custom ${config.style} in ${config.color}`}
-          fill
-          sizes="(max-width: 992px) 100vw, 58vw"
-          style={{ objectFit: 'contain', padding: '2rem' }}
-          priority
+          contain
         />
       </div>
 
@@ -30,13 +27,13 @@ export default function CustomizerPreview({ config }) {
           {config.buttons === 'zipper' && (
             <img src="/images/overlay_zipper.png" className={`customizer-overlay overlay-chest`} alt="Zipper detail" />
           )}
-          {config.buttons === 'visible' && (
+          {config.buttons === 'exposed' && (
             <img src="/images/overlay_buttons.png" className={`customizer-overlay overlay-chest`} alt="Button detail" />
           )}
-          {config.cuffs === 'french' && (
+          {config.cuffs === 'french cuffs' && (
             <img src="/images/overlay_cuff_french.png" className={`customizer-overlay overlay-wrist`} alt="French Cuff detail" />
           )}
-          {config.cuffs === 'buttoned' && (
+          {config.cuffs === 'shirt cuffs' && (
             <img src="/images/overlay_cuff_buttoned.png" className={`customizer-overlay overlay-wrist`} alt="Buttoned Cuff detail" />
           )}
         </>
