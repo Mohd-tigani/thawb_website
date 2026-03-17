@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)",
+      "Bash(npx next:*)",
+      "Bash(sort -k5 -h)",
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Bash(find C:/Users/Pcd/Desktop/cloth_e_commercial/app -type f \\\\\\(-name *.jsx -o -name *.tsx -o -name *.js -o -name *.ts \\\\\\))",
+      "Bash(find C:/Users/Pcd/Desktop/cloth_e_commercial/components -type f \\\\\\(-name *.jsx -o -name *.tsx -o -name *.js -o -name *.ts \\\\\\))",
+      "Bash(npm --version)",
+      "Bash(git remote:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

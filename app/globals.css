@@ -1,0 +1,803 @@
+:root {
+  --primary-color: #1a1a1a;
+  --secondary-color: #faf7f2;
+  --accent-gold: #b89b5e;
+  --accent-brown: #7a6645;
+  --card-bg: #f5f2ec;
+  --font-heading: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+/* Custom Utilities */
+.text-gold {
+  color: var(--accent-gold);
+}
+.bg-gold {
+  background-color: var(--accent-gold);
+}
+.btn-premium {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: 1px solid var(--primary-color);
+  padding: 0.75rem 2rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn-premium:hover {
+  background-color: transparent;
+  color: var(--primary-color);
+}
+.btn-outline-premium {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 0.75rem 2rem;
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn-outline-premium:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+/* Navbar */
+.navbar-brand {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.nav-link {
+  font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent-gold);
+  transition: width 0.4s var(--ease-smooth);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Header Icons */
+.header-icon {
+  width: 22px;
+  height: 22px;
+}
+.header-icon-person {
+  width: 24px;
+  height: 24px;
+}
+.header-icon-bag {
+  width: 21px;
+  height: 21px;
+}
+.header-icons-container {
+  gap: 2rem !important;
+}
+.header-badge {
+  font-size: 0.7rem !important;
+  padding: 0.3em 0.5em;
+}
+
+/* Section Ornament — a minimal gold diamond divider unique to the brand */
+.section-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto 2.5rem;
+  max-width: 200px;
+}
+.section-ornament::before,
+.section-ornament::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--accent-gold);
+  opacity: 0.5;
+}
+.section-ornament span {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Arabic brand accent — used sparingly for identity */
+.brand-arabic {
+  color: var(--accent-gold);
+  opacity: 0.7;
+  letter-spacing: 3px;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.85);
+  will-change: transform;
+  transform: translateZ(0);
+  animation: slowZoom 20s infinite alternate linear;
+}
+
+@keyframes slowZoom {
+  0% { transform: translateZ(0) scale(1); }
+  100% { transform: translateZ(0) scale(1.03); }
+}
+
+.hero-content {
+  color: white;
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  max-width: 600px;
+  margin-left: 5%;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  border-left: 4px solid var(--accent-gold);
+  opacity: 0;
+  animation: slideFadeIn 1s forwards 0.5s;
+}
+
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Categories */
+.category-card {
+  position: relative;
+  overflow: hidden;
+  height: 400px;
+  display: block;
+  text-decoration: none;
+}
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-smooth);
+  will-change: transform;
+}
+.category-card:hover .category-image {
+  transform: scale(1.08);
+}
+.category-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  text-align: left;
+}
+.category-title {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 400;
+  font-family: var(--font-heading);
+}
+.category-subtitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent-gold);
+}
+
+/* Products */
+.product-card {
+  border: none;
+  background: transparent;
+  transition: transform 0.4s var(--ease-smooth);
+  will-change: transform;
+}
+.product-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+.product-img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-smooth);
+  will-change: transform;
+}
+.product-card:hover .product-img {
+  transform: scale(1.03);
+}
+.product-card:hover {
+  transform: translateY(-5px);
+}
+.product-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: block;
+}
+.product-price {
+  color: var(--accent-brown);
+  font-weight: 500;
+}
+.add-to-cart-overlay {
+  position: absolute;
+  bottom: -50px;
+  width: 100%;
+  background: rgba(255,255,255,0.9);
+  padding: 1rem;
+  text-align: center;
+  transition: bottom 0.4s var(--ease-smooth);
+}
+.product-card:hover .add-to-cart-overlay {
+  bottom: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 4rem 0 0;
+  border-top: 3px solid var(--accent-gold);
+}
+.footer-brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  margin: 0.25rem 0 1rem;
+  color: #fff;
+}
+.footer-tagline {
+  color: rgba(255,255,255,0.5);
+  font-size: 0.88rem;
+  line-height: 1.7;
+  margin: 0;
+}
+.footer-heading {
+  color: var(--accent-gold);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+.footer-link {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+  display: inline;
+}
+.footer-link:hover {
+  color: #ffffff;
+}
+.footer-bottom {
+  margin-top: 3rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+.footer-services {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.5px;
+}
+.footer-service-dot {
+  color: var(--accent-gold);
+  font-size: 1rem;
+}
+.footer-copyright {
+  color: rgba(255,255,255,0.35);
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* Search Overlay */
+.search-result-img:hover {
+  transform: scale(1.08);
+}
+input.form-control::placeholder {
+  color: rgba(255,255,255,0.3) !important;
+}
+
+/* Search Input — base size (overridden by responsive queries below) */
+.search-input-responsive {
+  font-size: 1.75rem;
+}
+
+/* Cart Offcanvas — constrain width on small phones */
+@media (max-width: 400px) {
+  .offcanvas-end {
+    width: 100% !important;
+  }
+}
+
+/* Loading Skeletons */
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+.skeleton-shimmer {
+  background: linear-gradient(110deg, #f0f0f0 30%, #e8e8e8 50%, #f0f0f0 70%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+.skeleton-bar {
+  background-color: #eee;
+  border-radius: 4px;
+}
+
+/* =====================================================
+   RESPONSIVE — Tablets & Mobiles
+   ===================================================== */
+
+/* ---------- Tablet and below (< 992px) ---------- */
+@media (max-width: 991.98px) {
+
+  /* Sticky navbar fix — compact, locked on top, high z-index */
+  .mobile-navbar {
+    position: sticky !important;
+    top: 0;
+    z-index: 1030;
+    padding: 0.6rem 0 !important;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+  }
+
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.6rem;
+  }
+  .brand-arabic {
+    font-size: 1.6rem !important;
+  }
+
+  /* Mobile menu action buttons (Search, My Bag) */
+  .mobile-menu-actions {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+  }
+  .mobile-menu-action-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1rem;
+    min-height: 48px;
+    background: none;
+    border: none;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .mobile-menu-action-btn:first-child {
+    border-right: 1px solid rgba(0,0,0,0.08);
+  }
+  .mobile-menu-action-btn:hover {
+    color: var(--accent-gold);
+  }
+  .mobile-bag-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--accent-gold);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    margin-left: 0.25rem;
+    padding: 0 4px;
+  }
+
+  /* Hero */
+  .hero-section {
+    height: 70vh;
+  }
+  .hero-content {
+    max-width: 85%;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Categories */
+  .category-card {
+    height: 300px;
+  }
+
+  /* Products */
+  .product-img {
+    height: 350px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 2.5rem 0 0;
+  }
+  .footer-heading {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  .footer-brand-name {
+    font-size: 1.3rem;
+  }
+  .footer-bottom {
+    margin-top: 2rem;
+  }
+
+  /* Customizer: reduce preview height when panels stack */
+  .customizer-preview-wrapper {
+    height: 50vh !important;
+    min-height: 350px !important;
+  }
+  /* Let controls scroll naturally when stacked */
+  .customizer-controls-wrapper {
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+  /* Hide detail overlay cards — they clutter the smaller preview */
+  .customizer-detail-panels {
+    display: none !important;
+  }
+
+  /* Shop sidebar: remove sticky when it sits above the grid */
+  .shop-sidebar .sticky-top {
+    position: static !important;
+  }
+
+  /* ---- PERFORMANCE: disable expensive GPU effects on tablet/mobile ---- */
+
+  /* Kill the infinite zoom animation — saves constant GPU compositing */
+  .hero-image {
+    animation: none !important;
+    will-change: auto;
+    filter: brightness(0.8);
+  }
+
+  /* Replace expensive backdrop-filter blur with a solid overlay */
+  .hero-content {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.75);
+  }
+
+  /* Remove will-change from cards — frees GPU memory on limited devices */
+  .product-img,
+  .product-card,
+  .category-image {
+    will-change: auto;
+  }
+}
+
+/* ---------- Small tablet / large phone (< 768px) ---------- */
+@media (max-width: 767.98px) {
+
+  /* Hero */
+  .hero-section {
+    height: 60vh;
+  }
+  .hero-content {
+    max-width: 92%;
+    padding: 1.5rem;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content .lead {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem !important;
+  }
+  .hero-content .btn-lg {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  /* Categories */
+  .category-card {
+    height: 250px;
+  }
+  .category-title {
+    font-size: 1.25rem;
+  }
+
+  /* Products */
+  .product-img {
+    height: 280px;
+  }
+  .product-title {
+    font-size: 1.05rem;
+  }
+
+  /* Buttons */
+  .btn-premium,
+  .btn-outline-premium {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* Footer: center-align for stacked columns */
+  .footer {
+    padding: 2rem 0 0;
+    text-align: center;
+  }
+  .footer-brand {
+    margin-bottom: 0.5rem;
+  }
+  .footer-brand-name {
+    font-size: 1.2rem;
+  }
+  .footer-tagline {
+    font-size: 0.82rem;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .footer-heading {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+  }
+  .footer-links li {
+    margin-bottom: 0.45rem;
+  }
+  .footer-link {
+    font-size: 0.85rem;
+  }
+  .footer-bottom {
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+  }
+  .footer-services {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .footer-service-dot {
+    display: none;
+  }
+
+  /* Reduce Bootstrap spacing utilities on mobile — prevents stacked sections
+     from creating enormous gaps on small viewports */
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .my-5 {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Customizer: remove side border when panel is full-width */
+  .customizer-controls-inner {
+    border-left: none !important;
+  }
+
+  /* Product detail: disable sticky info when columns stack */
+  .product-info-sticky {
+    position: static !important;
+  }
+
+  /* Search Overlay input */
+  .search-input-responsive {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Customizer Overlays (Layered Demo) */
+.customizer-overlay {
+  position: absolute;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.95;
+  -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%);
+  mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 70%);
+  transition: opacity 0.3s ease;
+}
+
+.overlay-chest {
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14%;
+  max-width: 100px;
+}
+
+.overlay-wrist {
+  top: 60%;
+  left: 31%; /* Positioning over the left sleeve of the Emirati White base model */
+  transform: translateX(-50%);
+  width: 18%;
+  max-width: 120px;
+}
+
+/* ---------- Phone (< 576px) ---------- */
+@media (max-width: 575.98px) {
+
+  /* Hero */
+  .hero-section {
+    height: 55vh;
+    min-height: 340px;
+  }
+  .hero-content {
+    padding: 1.25rem;
+  }
+  .hero-content h1 {
+    font-size: 1.6rem;
+  }
+  .hero-content .lead {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem !important;
+  }
+  .hero-content h5 {
+    font-size: 0.75rem !important;
+    letter-spacing: 2px !important;
+  }
+
+  /* Hero buttons stack vertically on small phones */
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    margin-right: 0 !important;
+  }
+
+  /* Categories */
+  .category-card {
+    height: 200px;
+  }
+  .category-overlay {
+    padding: 1rem;
+  }
+  .category-title {
+    font-size: 1.1rem;
+  }
+
+  /* Products */
+  .product-img {
+    height: 240px;
+  }
+
+  /* Navbar */
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+  .brand-arabic {
+    font-size: 1.3rem !important;
+  }
+
+  /* Mobile navbar even more compact on small phones */
+  .mobile-navbar {
+    padding: 0.45rem 0 !important;
+  }
+
+  /* Section spacing */
+  .section-ornament {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Nav links in expanded mobile menu */
+  .navbar-nav .mobile-nav-link {
+    font-size: 0.95rem;
+    padding: 0.85rem 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .navbar-nav .mobile-nav-link.active {
+    border-bottom: 2px solid var(--accent-gold);
+  }
+  /* Give the expanded menu a subtle top border */
+  .navbar-collapse.show,
+  .navbar-collapse.collapsing {
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding-bottom: 0.5rem;
+  }
+
+  /* Scale large display headings for phone screens */
+  .display-3 {
+    font-size: 1.5rem !important;
+  }
+  .display-5 {
+    font-size: 1.4rem !important;
+  }
+
+  /* New Arrivals header stacks vertically */
+  .new-arrivals-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem;
+  }
+
+  /* Search overlay input even smaller */
+  .search-input-responsive {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* ---------- Touch devices: fix hover-dependent interactions ---------- */
+@media (hover: none) and (pointer: coarse) {
+  /* Always show the add-to-cart overlay since hover is unavailable */
+  .add-to-cart-overlay {
+    bottom: 0;
+  }
+  /* Disable hover lift/zoom effects that feel broken on touch */
+  .product-card:hover {
+    transform: none;
+  }
+  .product-card:hover .product-img {
+    transform: none;
+  }
+  .category-card:hover .category-image {
+    transform: none;
+  }
+}

@@ -1,0 +1,47 @@
+.container {
+  position: absolute;
+  inset: 0;
+  cursor: default;
+  overflow: hidden;
+}
+
+.zoomReady {
+  cursor: zoom-in;
+}
+
+.popup {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 8px;
+  border: 2px solid var(--accent-gold);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.popupVisible {
+  opacity: 1;
+}
+
+/* Disable zoom popup on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .container {
+    cursor: default;
+  }
+  .popup {
+    display: none !important;
+  }
+}
+
+/* Slightly smaller on tablets */
+@media (max-width: 991.98px) and (hover: hover) {
+  .popup {
+    width: 180px;
+    height: 180px;
+  }
+}
